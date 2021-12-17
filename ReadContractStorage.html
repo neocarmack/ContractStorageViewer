@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Today's Date</title>
+	<script>
+        let d = new Date();
+        alert("Today's date is " + d);
+    </script>
+	<script type="text/javascript" src="http://rawgit.com/ethereum/web3.js/0.16.0/dist/web3.min.js"></script> 
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/ethjs@0.3.0/dist/ethjs.min.js"></script> 
+
+
+<script>
+window.addEventListener('load', function() {
+            // Check if Web3 has been injected by the browser:
+            if (typeof web3 !== 'undefined') {
+                // You have a web3 browser! Continue below!
+                startApp(web3);
+            } else {
+                // Warn the user that they need to get a web3 browser
+                // Or install MetaMask, maybe with a nice graphic.
+				alert("Start web3 failed!");
+            }
+        });
+         
+        const contract_address = '0xf035755df96ad968a7ad52c968dbe86d52927f5b';
+        var eth = null;
+        function startApp(web3) {
+            //alert("entro");
+            document.getElementById("etherlog").innerHTML = "Enterng web3<br>";
+            eth = new Eth(web3.currentProvider);
+            //alert("llego");
+            web3.eth.getStorageAt(contract_address, 0, function(error, result){
+            if(!error) {
+                console.log(web3.toAscii(result))
+                document.getElementById("etherlog").innerHTML+= "Owner: " + result + "<br>" ; 
+            } else
+                console.error(error);
+            });
+            web3.eth.getStorageAt(contract_address, 2, function(error, result){
+            if(!error) {
+                console.log(web3.toAscii(result))
+                document.getElementById("etherlog").innerHTML+= "Token: " + web3.toAscii(result) + "<br>" ;
+            } else
+                console.error(error);
+            });
+            web3.eth.getStorageAt(contract_address, 1, function(error, result){
+            if(!error) {
+                console.log(web3.toAscii(result))
+                document.getElementById("etherlog").innerHTML+= "Token Name: " + web3.toAscii(result) + "<br>" ;
+            } else
+                console.error(error);
+            });
+            web3.eth.getStorageAt(contract_address, 3, function(error, result){
+            if(!error) {
+                console.log(web3.toAscii(result))
+                document.getElementById("etherlog").innerHTML+= "Decimals: " + web3.toDecimal(result)+ "<br>" ;
+            } else
+                console.error(error);
+            });
+            web3.eth.getStorageAt(contract_address, 7, function(error, result){
+            if(!error) {
+                console.log(web3.toAscii(result))
+                document.getElementById("etherlog").innerHTML+= "Price Buy: " + web3.toDecimal(result)+ "<br>" ;
+            } else
+                console.error(error);
+            });
+            web3.eth.getStorageAt(contract_address, 8, function(error, result){
+            if(!error) {
+                console.log(web3.toAscii(result))
+                document.getElementById("etherlog").innerHTML+= "Price Sell: " + web3.toDecimal(result)+ "<br>" ;
+            } else
+                console.error(error);
+            });
+            web3.eth.getStorageAt(contract_address, 4, function(error, result){
+            if(!error) {
+                console.log(web3.toAscii(result))
+                document.getElementById("etherlog").innerHTML+= "Total Tokens: " + web3.toDecimal(result)+ "<br>" ; 
+            } else
+                console.error(error);
+            });
+             
+             
+             
+        }
+</script>
+
+</head>
+
+<body>
+<div id="etherlog">LOG</div>
+<a href="https://rinkeby.etherscan.io/address/0xf035755df96ad968a7ad52c968dbe86d52927f5b#code" target="new">Token Contract: 0xf035755df96ad968a7ad52c968dbe86d52927f5b</a>
+
+</body>
+
+</html>
