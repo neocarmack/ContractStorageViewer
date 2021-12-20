@@ -71,7 +71,8 @@
             web3.eth.getStorageAt(contract_address, 1, function(error, result){
             if(!error) {
                 console.log(web3.toAscii(result))
-                document.getElementById("etherlog").innerHTML+= "Slot 1: " + web3.toAscii(result) + "<br>" ;
+                //document.getElementById("etherlog").innerHTML+= "Slot 1: " + web3.toAscii(result) + "<br>" ;
+		document.getElementById("etherlog").innerHTML+= "Slot 1: " + result + "<br>" ;
             } else
                 console.error(error);
             });
