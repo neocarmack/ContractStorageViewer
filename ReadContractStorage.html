@@ -52,7 +52,9 @@
 	
 
          
-	const contract_address = '0xf035755df96ad968a7ad52c968dbe86d52927f5b';
+	//const contract_address = '0xf035755df96ad968a7ad52c968dbe86d52927f5b';
+	const contract_address = '0x5c412531D1F7F33d57a8EA462A42b5cA1466D062';
+	
 	var eth = null;
 	function startApp(web3) {
             //alert("entro");
@@ -62,53 +64,53 @@
             web3.eth.getStorageAt(contract_address, 0, function(error, result){
             if(!error) {
                 console.log(web3.toAscii(result))
-                document.getElementById("etherlog").innerHTML+= "Owner: " + result + "<br>" ; 
+                document.getElementById("etherlog").innerHTML+= "Slot 0: " + result + "<br>" ; 
             } else
                 console.error(error);
-            });
-            web3.eth.getStorageAt(contract_address, 2, function(error, result){
-            if(!error) {
-                console.log(web3.toAscii(result))
-                document.getElementById("etherlog").innerHTML+= "Token: " + web3.toAscii(result) + "<br>" ;
-            } else
-                console.error(error);
-            });
+            }); 
             web3.eth.getStorageAt(contract_address, 1, function(error, result){
             if(!error) {
                 console.log(web3.toAscii(result))
-                document.getElementById("etherlog").innerHTML+= "Token Name: " + web3.toAscii(result) + "<br>" ;
+                document.getElementById("etherlog").innerHTML+= "Slot 1: " + web3.toAscii(result) + "<br>" ;
+            } else
+                console.error(error);
+            });
+	    web3.eth.getStorageAt(contract_address, 2, function(error, result){
+            if(!error) {
+                console.log(web3.toAscii(result))
+                document.getElementById("etherlog").innerHTML+= "Slot 2: " + web3.toAscii(result) + "<br>" ;
             } else
                 console.error(error);
             });
             web3.eth.getStorageAt(contract_address, 3, function(error, result){
             if(!error) {
                 console.log(web3.toAscii(result))
-                document.getElementById("etherlog").innerHTML+= "Decimals: " + web3.toDecimal(result)+ "<br>" ;
-            } else
-                console.error(error);
-            });
-            web3.eth.getStorageAt(contract_address, 7, function(error, result){
-            if(!error) {
-                console.log(web3.toAscii(result))
-                document.getElementById("etherlog").innerHTML+= "Price Buy: " + web3.toDecimal(result)+ "<br>" ;
-            } else
-                console.error(error);
-            });
-            web3.eth.getStorageAt(contract_address, 8, function(error, result){
-            if(!error) {
-                console.log(web3.toAscii(result))
-                document.getElementById("etherlog").innerHTML+= "Price Sell: " + web3.toDecimal(result)+ "<br>" ;
+                document.getElementById("etherlog").innerHTML+= "Slot 3: " + web3.toDecimal(result)+ "<br>" ;
             } else
                 console.error(error);
             });
             web3.eth.getStorageAt(contract_address, 4, function(error, result){
             if(!error) {
                 console.log(web3.toAscii(result))
-                document.getElementById("etherlog").innerHTML+= "Total Tokens: " + web3.toDecimal(result)+ "<br>" ; 
+                document.getElementById("etherlog").innerHTML+= "Slot 4: " + web3.toDecimal(result)+ "<br>" ;
+            } else
+                console.error(error);
+            });
+            web3.eth.getStorageAt(contract_address, 5, function(error, result){
+            if(!error) {
+                console.log(web3.toAscii(result))
+                document.getElementById("etherlog").innerHTML+= "Slot 5: " + web3.toDecimal(result)+ "<br>" ;
+            } else
+                console.error(error);
+            });
+            web3.eth.getStorageAt(contract_address, 6, function(error, result){
+            if(!error) {
+                console.log(web3.toAscii(result))
+                document.getElementById("etherlog").innerHTML+= "Slot 6: " + web3.toDecimal(result)+ "<br>" ; 
             } else
                 console.error(error);
             }
-			); 
+	); 
         }
 </script>
 
