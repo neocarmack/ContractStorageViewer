@@ -14,29 +14,33 @@
 
 
 <script>
-window.addEventListener('load', () => function() {
-	
-	var web3Provider;
-	if (window.ethereum) {
-   		web3Provider = window.ethereum;
-  		try {
-			// 请求用户授权
+//window.addEventListener('load', () => function() {
+
+	var web3;
+	window.addEventListener("load", () => loadObj(), false);
+
+	async function loadObj() {
+		var web3Provider;
+		if (window.ethereum) {
+			web3Provider = window.ethereum;
+			try {
+				// 请求用户授权
     			await window.ethereum.enable();
- 		 } catch (error) {
-    		// 用户不授权时
-    		console.error("User denied account access")
-  		}
-	} 
-	else if (window.web3) {   // 老版 MetaMask Legacy dapp browsers...
-  		web3Provider = window.web3.currentProvider;
-	} else {
-		web3Provider = new Web3.providers.HttpProvider('http://localhost:8545');
-	}
+			} catch (error) {
+				// 用户不授权时
+				console.error("User denied account access")
+			}
+		} 
+		else if (window.web3) {   // 老版 MetaMask Legacy dapp browsers...
+			web3Provider = window.web3.currentProvider;
+		} else {
+			web3Provider = new Web3.providers.HttpProvider('http://localhost:8545');
+		}
 	
-	web3 = new Web3(web3Provider);
+		web3 = new Web3(web3Provider);
             
-	// Check if Web3 has been injected by the browser:
-        if (typeof web3 !== 'undefined') {
+		// Check if Web3 has been injected by the browser:
+		if (typeof web3 !== 'undefined') {
             // You have a web3 browser! Continue below!
             startApp(web3);
         } else {
@@ -44,11 +48,13 @@ window.addEventListener('load', () => function() {
             // Or install MetaMask, maybe with a nice graphic.
 		alert("Start web3 failed!");
         }
-    });
+    } 
+	
+
          
-        const contract_address = '0xf035755df96ad968a7ad52c968dbe86d52927f5b';
-        var eth = null;
-        function startApp(web3) {
+	const contract_address = '0xf035755df96ad968a7ad52c968dbe86d52927f5b';
+	var eth = null;
+	function startApp(web3) {
             //alert("entro");
             document.getElementById("etherlog").innerHTML = "Enterng web3<br>";
             eth = new Eth(web3.currentProvider);
@@ -101,12 +107,11 @@ window.addEventListener('load', () => function() {
                 document.getElementById("etherlog").innerHTML+= "Total Tokens: " + web3.toDecimal(result)+ "<br>" ; 
             } else
                 console.error(error);
-            });
-             
-             
-             
+            }
+			); 
         }
 </script>
+
 
 </head>
 
